@@ -28,8 +28,23 @@ public class CamundaSecurityFilter {
     return registration;
   }
 
+  /* Basic Authentication Mode
+  @Bean
+  public FilterRegistrationBean ProcessEngineAuthenticationFilterBasic() {
+    FilterRegistrationBean registration = new FilterRegistrationBean();
+    registration.setName("camunda-auth");
+    registration.addInitParameter("authentication-provider",
+        "org.camunda.bpm.engine.rest.security.auth.impl.HttpBasicAuthenticationProvider");
+    registration.addUrlPatterns("/engine-rest/*");
+    registration.setFilter(getProcessEngineAuthenticationFilter());
+    return registration;
+  }
+  */
+
+
   @Bean
   public Filter getProcessEngineAuthenticationFilter() {
+    //return new ProcessEngineAuthenticationFilterBasic();
     return new ProcessEngineAuthenticationFilterJwt();
   }
 
